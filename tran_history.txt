@@ -1,0 +1,2 @@
+withdraw/554000/withdraw amount is : 6000
+deposit/1314000/deposit amount is : 760000
