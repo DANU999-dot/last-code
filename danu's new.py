@@ -44,17 +44,20 @@ def save_new_updates(accounts):
     for name, data in accounts.items():
             f.write(f"{name},{data['password']},{data['balance']}\n")
 # ================== withdraw ===========================================================
+import os
+from datetime import datetime
 def withdraw(accounts, user_name):
     amount = int(input("Enter your withdraw amount: "))
 
     if amount <= accounts[user_name]["balance"]:
         accounts[user_name]["balance"] -= amount
+        date = datetime.now().strftime("%d-%m-%Y %A %I:%M %p")
         print("withdraw successful🤑!")
         print("Your new balance is:", accounts[user_name]["balance"])
         save_new_updates(accounts)
 
         f=open("tran_history.txt", "a")
-        f.write(f"withdraw/{accounts[user_name]["balance"]}/withdraw amount is : {amount}\n")
+        f.write(f"withdraw/{accounts[user_name]["balance"]}/withdraw amount is : {amount}/date & time :{date}\n")
 
     else:
         print(" Please check the amount.🤦‍♂️")
@@ -64,17 +67,21 @@ def history():
     danu=f.read()
     print(danu)
 # =================== deposit ==============================================================
+import os
+from datetime import datetime
 def deposit(accounts, user_name):
     amount = int(input("Enter your deposit amount: "))
 
     if amount > 0:
         accounts[user_name]["balance"] += amount
+        date = datetime.now().strftime("%d-%m-%Y %A %I:%M %p")
         print("Deposit successful!")
-        print("Your new balance is💸:", accounts[user_name]["balance"])
+        print("Your new balance is💸:",accounts[user_name]["balance"])
         save_new_updates(accounts)
 
         f=open("tran_history.txt", "a")
-        f.write(f"deposit/{accounts[user_name]["balance"]}/deposit amount is : {amount}\n")
+        f.write(f"deposit/{accounts[user_name]["balance"]}/deposit amount is : {amount}/date & time :{date}\n")
+
     
     else:
         print("Invalid deposit amount!😢")
